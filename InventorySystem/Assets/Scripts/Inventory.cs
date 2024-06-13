@@ -1,17 +1,13 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.Windows;
 using File = System.IO.File;
 
 public class Inventory : MonoBehaviour
 {
-    private List<GameObject> inventoryList = new List<GameObject>();
+    private List<GameObject> inventoryList;
     private string inventoryJsonPath = "Assets/Json/inventory.json";
 
     private MiscItemFactory _miscItemFactory;
@@ -23,6 +19,7 @@ public class Inventory : MonoBehaviour
 
     private void Awake()
     {
+        inventoryList = new List<GameObject>();
         _miscItemFactory = GetComponent<MiscItemFactory>();
         _consumablesItemFactory = GetComponent<ConsumablesItemFactory>();
         _equipmentItemFactory = GetComponent<EquipmentItemFactory>();
@@ -32,59 +29,25 @@ public class Inventory : MonoBehaviour
     void Start()
     {
         string json = File.ReadAllText(inventoryJsonPath);
-        var temp = JsonConvert.DeserializeObject<JObject>(json);
-        var tempMisc =_miscItemFactory.CreateItem(temp["miscList"] as JArray, CountableSlot, inventoryList, transform);
-        var tempCon = _consumablesItemFactory.CreateItem(temp["consumablesList"] as JArray, CountableSlot, inventoryList, transform);
-        var tempEqu = _equipmentItemFactory.CreateItem(temp["equipmentList"] as JArray, UncountableSlot, inventoryList, transform);
+        var inventoryInfo = JsonConvert.DeserializeObject<JObject>(json);
+        _miscItemFactory.CreateItem(inventoryInfo["miscList"] as JArray, CountableSlot, inventoryList, transform);
+        _consumablesItemFactory.CreateItem(inventoryInfo["consumablesList"] as JArray, CountableSlot, inventoryList, transform);
+        _equipmentItemFactory.CreateItem(inventoryInfo["equipmentList"] as JArray, UncountableSlot, inventoryList, transform);
     }
 
-    void DebugItemList(List<BaseItem> list)
-    {
-        foreach (var element in list)
-        {
-            Debug.Log(JsonConvert.SerializeObject(element.BaseItemModel));
-        }
-    }
-
-    public void ShowEquipmentItem()
+    public void ShowClassifiedItem(int itemType) 
     {
         ShowAll();
         
-        var notEquips = inventoryList.Where(x =>
-            x.GetComponent<ItemContainer>().BaseItem.BaseItemModel.Type != BaseItemModel.ItemType.Equipment);
+        var notTypeItems = inventoryList.Where(x =>
+            x.GetComponent<ItemContainer>().BaseItem.BaseItemModel.Type != (ItemType)itemType);
 
-        foreach (var notEquip in notEquips)
+        foreach (var notTypeItem in notTypeItems)
         {
-            notEquip.SetActive(false);    
+            notTypeItem.SetActive(false);    
         }
     }
-    
-    public void ShowConsumablesItem()
-    {
-        ShowAll();
-        
-        var notEquips = inventoryList.Where(x =>
-            x.GetComponent<ItemContainer>().BaseItem.BaseItemModel.Type != BaseItemModel.ItemType.Consumables);
 
-        foreach (var notEquip in notEquips)
-        {
-            notEquip.SetActive(false);    
-        }
-    }
-    
-    public void ShowMiscItem()
-    {
-        ShowAll();
-        
-        var notEquips = inventoryList.Where(x =>
-            x.GetComponent<ItemContainer>().BaseItem.BaseItemModel.Type != BaseItemModel.ItemType.Misc);
-
-        foreach (var notEquip in notEquips)
-        {
-            notEquip.SetActive(false);    
-        }
-    }
-    
     public void ShowAll()
     {
         foreach (var element in inventoryList)
