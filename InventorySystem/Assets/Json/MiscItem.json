@@ -1,0 +1,62 @@
+[
+  {
+    "name": "책",
+    "id": "misc_001",
+    "description": "낡은 책이다. 뗄감으로 쓰기 좋을 것 같다.",
+    "type": "misc"
+  },
+  {
+    "name": "열쇠",
+    "id": "misc_002",
+    "description": "무언가를 열 때 사용할 수 있을 것 같다.",
+    "type": "misc"
+  },
+  {
+    "name": "구리 동전",
+    "id": "misc_003",
+    "description": "과거 사용된 동전이다. 고물상에 팔자.",
+    "type": "misc"
+  },
+  {
+    "name": "황금 동전",
+    "id": "misc_004",
+    "description": "과거 사용된 동전이다. 비싸게 팔 수 있을 것 같다.",
+    "type": "misc"
+  },
+  {
+    "name": "뼈",
+    "id": "misc_005",
+    "description": "동물의 뼈다.",
+    "type": "misc"
+  },
+  {
+    "name": "깃털",
+    "id": "misc_006",
+    "description": "동물의 깃털이다.",
+    "type": "misc"
+  },
+  {
+    "name": "슬라임 점액",
+    "id": "misc_007",
+    "description": "끈적끈적하다. ",
+    "type": "misc"
+  },
+  {
+    "name": "몬스터 눈알",
+    "id": "misc_008",
+    "description": "미식가들 사이에서 별미로 통한다.",
+    "type": "misc"
+  },
+  {
+    "name": "달걀",
+    "id": "misc_009",
+    "description": "빨리먹지 않으면 부화할지도?",
+    "type": "misc"
+  },
+  {
+    "name": "몬스터 알",
+    "id": "misc_010",
+    "description": "엄청나게 단단하다.",
+    "type": "misc"
+  }
+]

@@ -1,0 +1,26 @@
+{
+    "equipmentList":[
+        "equip_armor_001",
+        "equip_weapon_001"
+    ],
+    "consumablesList":[
+        {
+            "id": "potion_004",
+            "count": 2
+        },
+        {
+            "id": "potion_008",
+            "count": 3
+        }
+    ],
+    "miscList":[
+        {
+            "id": "misc_005",
+            "count": 14
+        },
+        {
+            "id": "misc_008",
+            "count": 54
+        }
+    ]
+}

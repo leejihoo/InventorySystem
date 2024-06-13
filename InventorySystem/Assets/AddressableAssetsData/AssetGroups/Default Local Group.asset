@@ -1,0 +1,153 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Default Local Group
+  m_EditorClassIdentifier: 
+  m_GroupName: Default Local Group
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 2d426644e65b44440b10fad68b2942e5
+  m_SerializeEntries:
+  - m_GUID: 93dbc8f96dc6c00418ba8f1a8e8992e4
+    m_Address: Assets/Cainos/Pixel Art Icon Pack - RPG/Texture/Equipment/Bag.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 6858a15e5082cf34b9ee3167e90403d3
+    m_Address: equip_armor_001
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 6509adb73ba1de04d898264b898cdf2e
+    m_Address: equip_armor_002
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 567fdd2e557fefc478f8aaa7ae56fb11
+    m_Address: equip_armor_003
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: e37ee0b1cbe20c5458102626b95a6b7c
+    m_Address: equip_armor_004
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 29a1226f7b5e20240942612e151c3c4c
+    m_Address: equip_armor_005
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 6a08ec4b334ea1c46b8171679417a74f
+    m_Address: equip_weapon_001
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: bbf8638a8a75d9c42b93639213c92c9b
+    m_Address: equip_weapon_002
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 256205b9c6ca12c45ab7762da8a65631
+    m_Address: equip_weapon_003
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 02ff976d39577774bb44b83610e61dec
+    m_Address: equip_weapon_004
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 38d5dde8fb892364296297a3a5c97a20
+    m_Address: equip_weapon_005
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 2d7d9ae02b7159843ac7d5ead0f8b89a
+    m_Address: potion_004
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ace8a02646afeda4880fc3cb14cad705
+    m_Address: potion_005
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: b7f77607c82ea4142a2070c0e37e1756
+    m_Address: potion_006
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: bbc53608878294d46a1e3b694ee0a1fb
+    m_Address: Assets/Cainos/Pixel Art Icon Pack - RPG/Texture/Potion/Empty Bottle.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 1f97848f18817cc43ba66da5a2d0ccfa
+    m_Address: potion_007
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f65023889763c7644b5579f0b019da6b
+    m_Address: potion_008
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 805736230f06ac449a72b0ecb951e522
+    m_Address: potion_009
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 44dc65116207f4b46aa85443dae5ad96
+    m_Address: potion_001
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 7b3876a2b72c44540a4bbd5aaba9e506
+    m_Address: potion_002
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 117b17facff65dc42b1b57deb7c21551
+    m_Address: potion_003
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 3a481bc5b3972b54ab4918d5226622af
+    m_Address: potion_010
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 7972dd97521bb1c44ba8e3774391b996
+    m_Address: misc_001
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: e30e7f1121c83ed469e6242c11d18e05
+    m_Address: misc_002
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 4605338a5a51383478a6b8eb3707e90c
+    m_Address: misc_003
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 394899dbf2938874ca7d1025f7598406
+    m_Address: misc_004
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 844a1050d03ba5046bfb86af34a81e47
+    m_Address: misc_005
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 5319e90cdef08eb4a90ed29d73271916
+    m_Address: misc_006
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: d1f94eb541d98c94c9e0a776707e9c7c
+    m_Address: misc_007
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 4461c87bad5222349b14c22b26d43b95
+    m_Address: misc_008
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ce993d5f7ca6ea8459974fd88e71861d
+    m_Address: misc_009
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: d62fc87d7e2c1d740b3afc4193abf641
+    m_Address: misc_010
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: a9ff890a681f75240ae51957e70ca95d, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 240c6134b1ce82e4298102ec9ca9139c, type: 2}
+    - {fileID: 11400000, guid: a1cc4154eaa2bf94c8ee62a2fb8bd851, type: 2}
