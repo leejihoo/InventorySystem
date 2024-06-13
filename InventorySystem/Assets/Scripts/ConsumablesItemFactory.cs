@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using Newtonsoft.Json.Linq;
 using TMPro;
@@ -7,21 +6,8 @@ using UnityEngine.UI;
 
 public class ConsumablesItemFactory : ItemFactory
 {
-    // Start is called before the first frame update
-    void Start()
+    public override void CreateItem(JArray itemList, GameObject slot, List<GameObject> inventoryList, Transform parent)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public override List<GameObject> CreateItem(JArray itemList, GameObject slot, List<GameObject> inventoryList, Transform parent)
-    {
-        List<GameObject> consumablesItemList = new List<GameObject>();
         foreach (var jToken in itemList)
         {
             var newSlot = Instantiate(slot, parent);
@@ -33,9 +19,6 @@ public class ConsumablesItemFactory : ItemFactory
             newSlot.GetComponentInChildren<TMP_Text>().text = consumablesItem.Count.ToString();
             newSlot.GetComponentsInChildren<Image>()[1].sprite = consumablesItem.Sprite;
             inventoryList.Add(newSlot);
-            consumablesItemList.Add(slot);
         }
-
-        return consumablesItemList;
     }
 }
