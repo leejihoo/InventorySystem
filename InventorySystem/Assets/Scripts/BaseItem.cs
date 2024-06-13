@@ -1,14 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class BaseItem
 {
-    public BaseItemModel BaseItemModel;
-    public Sprite Sprite;
+    public BaseItemModel BaseItemModel { get; set; }
+    public Sprite Sprite { get; set; }
 
-    public BaseItem(BaseItemModel baseItemModel)
+    protected BaseItem(BaseItemModel baseItemModel)
     {
         BaseItemModel = baseItemModel;
     }

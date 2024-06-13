@@ -9,14 +9,13 @@ public class BaseItemModel
     public string Id { get; set; }
     public string Description { get; set; }
     public ItemType Type { get; set; }
-
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum ItemType
-    {
-        Equipment,
-        Consumables,
-        Misc
-    }
 }
 
+[JsonConverter(typeof(StringEnumConverter)), Serializable]
+public enum ItemType
+{
+    Equipment,
+    Consumables,
+    Misc
+}
 
