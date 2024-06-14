@@ -1418,6 +1418,7 @@ MonoBehaviour:
   equipmentItemPopup: {fileID: 6077573264016878337, guid: 46c00a3d8aaf9794481c63489b114c48, type: 3}
   miscItemPopup: {fileID: 1652248770644965482, guid: 3b509756e370e4b4985b16b58287e4da, type: 3}
   consumablesItemPopup: {fileID: 790849384941784196, guid: 6a232b7fe0d154a49871d90c4c1bfbfe, type: 3}
+  blur: {fileID: 1093035967355064481, guid: ce25c821aabf4744d8479419a5c63d73, type: 3}
 --- !u!4 &1805665130
 Transform:
   m_ObjectHideFlags: 0
