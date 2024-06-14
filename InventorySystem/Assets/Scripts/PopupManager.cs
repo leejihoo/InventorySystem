@@ -63,4 +63,44 @@ public class PopupManager : MonoBehaviour
         var instance =Instantiate(blur, GameObject.Find("Canvas").transform);
         PopupStack.Push(instance);
     }
+
+    public string LocalizeEffectText(string property)
+    {
+        switch (property)
+        {
+            case "Strength":
+                return "힘";
+            case "Agility":
+                return "민첩";
+            case "Luck":
+                return "운";
+            case "Intellect":
+                return "지능";
+            case "Hp":
+                return "체력";
+            case "Mp":
+                return "마나";
+            case "Attack":
+                return "공격력";
+            case "Defense":
+                return "방어력";
+            default:
+                return "";
+        }
+    }
+
+    public string LocalizeTypeText(ItemType itemType)
+    {
+        switch (itemType)
+        {
+            case ItemType.Consumables:
+                return "소비";
+            case ItemType.Equipment:
+                return "장비";
+            case ItemType.Misc:
+                return "기타";
+            default:
+                return "";
+        }
+    }
 }
