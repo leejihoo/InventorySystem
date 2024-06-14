@@ -9,7 +9,8 @@ public class PopupManager : MonoBehaviour
     public GameObject equipmentItemPopup;
     public GameObject miscItemPopup;
     public GameObject consumablesItemPopup;
-
+    public GameObject blur;
+    
     public Stack<GameObject> PopupStack;
 
     public static PopupManager Instance { get; set; }
@@ -49,5 +50,17 @@ public class PopupManager : MonoBehaviour
     public static void CreateConsumablesItemPopup()
     {
         
+    public void PopupExit()
+    {
+        while (PopupStack.Count > 0)
+        {
+            Destroy(PopupStack.Pop());
+        }
+    }
+
+    public void CreateBlur()
+    {
+        var instance =Instantiate(blur, GameObject.Find("Canvas").transform);
+        PopupStack.Push(instance);
     }
 }
