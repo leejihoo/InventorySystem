@@ -12,5 +12,13 @@ public class ItemContainer: MonoBehaviour, IPointerClickHandler
         {
             PopupManager.Instance.CreateEquipmentItemPopup(BaseItem);
         }
+        else if (BaseItem.BaseItemModel.Type == ItemType.Consumables)
+        {
+            PopupManager.Instance.CreateConsumablesItemPopup(BaseItem);
+        }
+        else if (BaseItem.BaseItemModel.Type == ItemType.Misc)
+        {
+            PopupManager.Instance.CreateMiscItemPopup(BaseItem);
+        }
     }
 }
