@@ -21,4 +21,26 @@ public class ConsumablesItemFactory : ItemFactory
             inventoryList.Add(newSlot);
         }
     }
+
+    public override void CreatePopup(BaseItem baseItem, GameObject popup, Stack<GameObject> popupStack)
+    {
+        var instance = Instantiate(popup, GameObject.Find("Canvas").transform);
+        popupStack.Push(instance);
+        instance.GetComponent<PopupChildrenContainer>().itemImage.sprite = baseItem.Sprite;
+        instance.GetComponent<PopupChildrenContainer>().itemName.text = baseItem.BaseItemModel.Name;
+        instance.GetComponent<PopupChildrenContainer>().itemType.text = PopupManager.Instance.LocalizeTypeText(baseItem.BaseItemModel.Type);
+        instance.GetComponent<PopupChildrenContainer>().itemDescription.text = baseItem.BaseItemModel.Description;
+
+        instance.GetComponent<PopupChildrenContainer>().itemEffect.text = "";
+        foreach (var property in typeof(Effect).GetProperties())
+        {
+            var value = (int)property.GetValue(((EffectableItemModel)baseItem.BaseItemModel).Effect);
+            // if (value == 0)
+            // {
+            //     continue;
+            // }
+
+            instance.GetComponent<PopupChildrenContainer>().itemEffect.text += PopupManager.Instance.LocalizeEffectText(property.Name) + " +" + value + "\n";
+        }
+    }
 }

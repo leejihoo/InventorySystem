@@ -21,4 +21,14 @@ public class MiscItemFactory : ItemFactory
             inventoryList.Add(newSlot);
         }
     }
+
+    public override void CreatePopup(BaseItem baseItem, GameObject popup, Stack<GameObject> popupStack)
+    {
+        var instance = Instantiate(popup, GameObject.Find("Canvas").transform);
+        popupStack.Push(instance);
+        instance.GetComponent<PopupChildrenContainer>().itemImage.sprite = baseItem.Sprite;
+        instance.GetComponent<PopupChildrenContainer>().itemName.text = baseItem.BaseItemModel.Name;
+        instance.GetComponent<PopupChildrenContainer>().itemType.text = PopupManager.Instance.LocalizeTypeText(baseItem.BaseItemModel.Type);
+        instance.GetComponent<PopupChildrenContainer>().itemDescription.text = baseItem.BaseItemModel.Description;
+    }
 }

@@ -24,57 +24,60 @@ public class PopupManager : MonoBehaviour
     public void CreateEquipmentItemPopup(BaseItem baseItem)
     {
         CreateBlur();
-        var instance = Instantiate(equipmentItemPopup, GameObject.Find("Canvas").transform);
-        PopupStack.Push(instance);
-        instance.GetComponent<PopupChildrenContainer>().itemImage.sprite = baseItem.Sprite;
-        instance.GetComponent<PopupChildrenContainer>().itemName.text = baseItem.BaseItemModel.Name;
-        instance.GetComponent<PopupChildrenContainer>().itemType.text = LocalizeTypeText(baseItem.BaseItemModel.Type);
-        instance.GetComponent<PopupChildrenContainer>().itemDescription.text = baseItem.BaseItemModel.Description;
-
-        foreach (var property in typeof(Effect).GetProperties())
-        {
-            var value = (int)property.GetValue(((EffectableItemModel)baseItem.BaseItemModel).Effect);
-            if (value == 0)
-            {
-                continue;
-            }
-
-            instance.GetComponent<PopupChildrenContainer>().itemEffect.text = LocalizeEffectText(property.Name) + " +" + value + "\n";
-        }
+        FactoryManager.Instance.CreatePopup(baseItem, PopupStack, ItemType.Equipment);
+        // var instance = Instantiate(equipmentItemPopup, GameObject.Find("Canvas").transform);
+        // PopupStack.Push(instance);
+        // instance.GetComponent<PopupChildrenContainer>().itemImage.sprite = baseItem.Sprite;
+        // instance.GetComponent<PopupChildrenContainer>().itemName.text = baseItem.BaseItemModel.Name;
+        // instance.GetComponent<PopupChildrenContainer>().itemType.text = LocalizeTypeText(baseItem.BaseItemModel.Type);
+        // instance.GetComponent<PopupChildrenContainer>().itemDescription.text = baseItem.BaseItemModel.Description;
+        //
+        // foreach (var property in typeof(Effect).GetProperties())
+        // {
+        //     var value = (int)property.GetValue(((EffectableItemModel)baseItem.BaseItemModel).Effect);
+        //     if (value == 0)
+        //     {
+        //         continue;
+        //     }
+        //
+        //     instance.GetComponent<PopupChildrenContainer>().itemEffect.text = LocalizeEffectText(property.Name) + " +" + value + "\n";
+        // }
     }
     
     public void CreateMiscItemPopup(BaseItem baseItem)
     {
         CreateBlur();
-        var instance = Instantiate(miscItemPopup, GameObject.Find("Canvas").transform);
-        PopupStack.Push(instance);
-        instance.GetComponent<PopupChildrenContainer>().itemImage.sprite = baseItem.Sprite;
-        instance.GetComponent<PopupChildrenContainer>().itemName.text = baseItem.BaseItemModel.Name;
-        instance.GetComponent<PopupChildrenContainer>().itemType.text = LocalizeTypeText(baseItem.BaseItemModel.Type);
-        instance.GetComponent<PopupChildrenContainer>().itemDescription.text = baseItem.BaseItemModel.Description;
+        FactoryManager.Instance.CreatePopup(baseItem, PopupStack, ItemType.Misc);
+        // var instance = Instantiate(miscItemPopup, GameObject.Find("Canvas").transform);
+        // PopupStack.Push(instance);
+        // instance.GetComponent<PopupChildrenContainer>().itemImage.sprite = baseItem.Sprite;
+        // instance.GetComponent<PopupChildrenContainer>().itemName.text = baseItem.BaseItemModel.Name;
+        // instance.GetComponent<PopupChildrenContainer>().itemType.text = LocalizeTypeText(baseItem.BaseItemModel.Type);
+        // instance.GetComponent<PopupChildrenContainer>().itemDescription.text = baseItem.BaseItemModel.Description;
     }
     
     public void CreateConsumablesItemPopup(BaseItem baseItem)
     {
         CreateBlur();
-        var instance = Instantiate(consumablesItemPopup, GameObject.Find("Canvas").transform);
-        PopupStack.Push(instance);
-        instance.GetComponent<PopupChildrenContainer>().itemImage.sprite = baseItem.Sprite;
-        instance.GetComponent<PopupChildrenContainer>().itemName.text = baseItem.BaseItemModel.Name;
-        instance.GetComponent<PopupChildrenContainer>().itemType.text = LocalizeTypeText(baseItem.BaseItemModel.Type);
-        instance.GetComponent<PopupChildrenContainer>().itemDescription.text = baseItem.BaseItemModel.Description;
-
-        instance.GetComponent<PopupChildrenContainer>().itemEffect.text = "";
-        foreach (var property in typeof(Effect).GetProperties())
-        {
-            var value = (int)property.GetValue(((EffectableItemModel)baseItem.BaseItemModel).Effect);
-            // if (value == 0)
-            // {
-            //     continue;
-            // }
-
-            instance.GetComponent<PopupChildrenContainer>().itemEffect.text += LocalizeEffectText(property.Name) + " +" + value + "\n";
-        }
+        FactoryManager.Instance.CreatePopup(baseItem, PopupStack, ItemType.Consumables);
+        // var instance = Instantiate(consumablesItemPopup, GameObject.Find("Canvas").transform);
+        // PopupStack.Push(instance);
+        // instance.GetComponent<PopupChildrenContainer>().itemImage.sprite = baseItem.Sprite;
+        // instance.GetComponent<PopupChildrenContainer>().itemName.text = baseItem.BaseItemModel.Name;
+        // instance.GetComponent<PopupChildrenContainer>().itemType.text = LocalizeTypeText(baseItem.BaseItemModel.Type);
+        // instance.GetComponent<PopupChildrenContainer>().itemDescription.text = baseItem.BaseItemModel.Description;
+        //
+        // instance.GetComponent<PopupChildrenContainer>().itemEffect.text = "";
+        // foreach (var property in typeof(Effect).GetProperties())
+        // {
+        //     var value = (int)property.GetValue(((EffectableItemModel)baseItem.BaseItemModel).Effect);
+        //     // if (value == 0)
+        //     // {
+        //     //     continue;
+        //     // }
+        //
+        //     instance.GetComponent<PopupChildrenContainer>().itemEffect.text += LocalizeEffectText(property.Name) + " +" + value + "\n";
+        // }
     }
 
     public void PopupExit()
