@@ -6,11 +6,11 @@ using UnityEngine.UI;
 
 public class ConsumablesItemFactory : ItemFactory
 {
-    public override void CreateItem(JArray itemList, GameObject slot, List<GameObject> inventoryList, Transform parent)
+    public override void CreateItem(JArray itemList, List<GameObject> inventoryList, Transform parent)
     {
         foreach (var jToken in itemList)
         {
-            var newSlot = Instantiate(slot, parent);
+            var newSlot = Instantiate(slotPrefab, parent);
             ConsumablesItem consumablesItem = ItemDatabase.ItemDictionary[jToken["id"].ToString()] as ConsumablesItem;
             consumablesItem.Count = int.Parse(jToken["count"].ToString());
             consumablesItem.Sprite = InsertImage(consumablesItem.BaseItemModel.Id);
@@ -22,9 +22,9 @@ public class ConsumablesItemFactory : ItemFactory
         }
     }
 
-    public override void CreatePopup(BaseItem baseItem, GameObject popup, Stack<GameObject> popupStack)
+    public override void CreatePopup(BaseItem baseItem, Stack<GameObject> popupStack)
     {
-        var instance = Instantiate(popup, GameObject.Find("Canvas").transform);
+        var instance = Instantiate(popupPrefab, GameObject.Find("Canvas").transform);
         popupStack.Push(instance);
         instance.GetComponent<PopupChildrenContainer>().itemImage.sprite = baseItem.Sprite;
         instance.GetComponent<PopupChildrenContainer>().itemName.text = baseItem.BaseItemModel.Name;
@@ -40,7 +40,7 @@ public class ConsumablesItemFactory : ItemFactory
             //     continue;
             // }
 
-            instance.GetComponent<PopupChildrenContainer>().itemEffect.text += PopupManager.Instance.LocalizeEffectText(property.Name) + " +" + value + "\n";
+            instance.GetComponent<PopupChildrenContainer>().itemEffect.text += LocalizationManager.Instance.LocalizeEffectText(property.Name) + " +" + value + "\n";
         }
     }
 }

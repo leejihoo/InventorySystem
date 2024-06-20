@@ -10,19 +10,9 @@ public class Inventory : MonoBehaviour
     private List<GameObject> inventoryList;
     private string inventoryJsonPath = "Assets/Json/inventory.json";
 
-    // private MiscItemFactory _miscItemFactory;
-    // private ConsumablesItemFactory _consumablesItemFactory;
-    // private EquipmentItemFactory _equipmentItemFactory;
-    //
-    // public GameObject CountableSlot;
-    // public GameObject UncountableSlot;
-
     private void Awake()
     {
         inventoryList = new List<GameObject>();
-        // _miscItemFactory = GetComponent<MiscItemFactory>();
-        // _consumablesItemFactory = GetComponent<ConsumablesItemFactory>();
-        // _equipmentItemFactory = GetComponent<EquipmentItemFactory>();
     }
 
     // Start is called before the first frame update
@@ -34,10 +24,6 @@ public class Inventory : MonoBehaviour
         FactoryManager.Instance.CreateItem(inventoryInfo["miscList"] as JArray, inventoryList, transform,ItemType.Misc);
         FactoryManager.Instance.CreateItem(inventoryInfo["consumablesList"] as JArray, inventoryList, transform,ItemType.Consumables);
         FactoryManager.Instance.CreateItem(inventoryInfo["equipmentList"] as JArray, inventoryList, transform,ItemType.Equipment);
-        
-        // _miscItemFactory.CreateItem(inventoryInfo["miscList"] as JArray, CountableSlot, inventoryList, transform);
-        // _consumablesItemFactory.CreateItem(inventoryInfo["consumablesList"] as JArray, CountableSlot, inventoryList, transform);
-        // _equipmentItemFactory.CreateItem(inventoryInfo["equipmentList"] as JArray, UncountableSlot, inventoryList, transform);
     }
 
     public void ShowClassifiedItem(int itemType) 
