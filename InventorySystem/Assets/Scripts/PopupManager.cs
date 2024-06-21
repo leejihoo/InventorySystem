@@ -7,28 +7,35 @@ using UnityEngine;
 public class PopupManager : MonoBehaviour
 {
     public GameObject blur;
-    
-    public Stack<GameObject> PopupStack;
+    private Stack<GameObject> _popupStack;
+
+    [SerializeField]
+    private FactoryManager factoryManager;
 
     public static PopupManager Instance { get; set; }
 
     private void Awake()
     {
         Instance = this;
-        PopupStack = new Stack<GameObject>();
+        _popupStack = new Stack<GameObject>();
+
+        if (factoryManager == null)
+        {
+            factoryManager = FindObjectOfType<FactoryManager>();
+        }
     }
 
     public void CreateItemPopup(BaseItem baseItem, ItemType itemtype)
     {
         CreateBlur();
-        FactoryManager.Instance.CreatePopup(baseItem, PopupStack, itemtype);
+        factoryManager.CreatePopup(baseItem, _popupStack, itemtype);
     }
 
     public void PopupExit()
     {
-        while (PopupStack.Count > 0)
+        while (_popupStack.Count > 0)
         {
-            Destroy(PopupStack.Pop());
+            Destroy(_popupStack.Pop());
         }
     }
 

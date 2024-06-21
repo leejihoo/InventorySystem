@@ -28,7 +28,7 @@ public class MiscItemFactory : ItemFactory
         popupStack.Push(instance);
         instance.GetComponent<PopupChildrenContainer>().itemImage.sprite = baseItem.Sprite;
         instance.GetComponent<PopupChildrenContainer>().itemName.text = baseItem.BaseItemModel.Name;
-        instance.GetComponent<PopupChildrenContainer>().itemType.text = PopupManager.Instance.LocalizeTypeText(baseItem.BaseItemModel.Type);
+        instance.GetComponent<PopupChildrenContainer>().itemType.text = LocalizationManager.Instance.LocalizeTypeText(baseItem.BaseItemModel.Type);
         instance.GetComponent<PopupChildrenContainer>().itemDescription.text = baseItem.BaseItemModel.Description;
     }
 }
