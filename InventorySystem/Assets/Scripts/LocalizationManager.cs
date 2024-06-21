@@ -27,4 +27,19 @@ public class LocalizationManager : Singleton<LocalizationManager>
     {
         return localSetting.GetStringDatabase().GetLocalizedString(property,localSetting.GetSelectedLocale());
     }
+    
+    public string LocalizeTypeText(ItemType itemType)
+    {
+        switch (itemType)
+        {
+            case ItemType.Consumables:
+                return "소비";
+            case ItemType.Equipment:
+                return "장비";
+            case ItemType.Misc:
+                return "기타";
+            default:
+                return "";
+        }
+    }
 }

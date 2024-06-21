@@ -35,21 +35,6 @@ public class PopupManager : MonoBehaviour
     public void CreateBlur()
     {
         var instance =Instantiate(blur, GameObject.Find("Canvas").transform);
-        PopupStack.Push(instance);
-    }
-
-    public string LocalizeTypeText(ItemType itemType)
-    {
-        switch (itemType)
-        {
-            case ItemType.Consumables:
-                return "소비";
-            case ItemType.Equipment:
-                return "장비";
-            case ItemType.Misc:
-                return "기타";
-            default:
-                return "";
-        }
+        _popupStack.Push(instance);
     }
 }
