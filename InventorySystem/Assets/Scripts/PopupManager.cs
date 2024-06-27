@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.Design.Serialization;
+using DG.Tweening;
 using UnityEngine;
 
 public class PopupManager : MonoBehaviour
@@ -35,7 +36,10 @@ public class PopupManager : MonoBehaviour
     {
         while (_popupStack.Count > 0)
         {
-            Destroy(_popupStack.Pop());
+            var popup = _popupStack.Pop();
+            popup.transform.DOKill();
+            popup.GetComponent<CanvasGroup>()?.DOKill();
+            Destroy(popup);
         }
     }
 
