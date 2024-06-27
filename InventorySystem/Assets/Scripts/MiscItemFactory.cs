@@ -17,7 +17,7 @@ public class MiscItemFactory : ItemFactory
             
             newSlot.GetComponent<ItemContainer>().BaseItem = miscItem;
             newSlot.GetComponentInChildren<TMP_Text>().text = miscItem.Count.ToString();
-            newSlot.GetComponentsInChildren<Image>()[1].sprite = miscItem.Sprite;
+            newSlot.GetComponent<ItemContainer>().itemImage.sprite = miscItem.Sprite;
             inventoryList.Add(newSlot);
         }
     }
@@ -25,6 +25,7 @@ public class MiscItemFactory : ItemFactory
     public override void CreatePopup(BaseItem baseItem, Stack<GameObject> popupStack)
     {
         var instance = Instantiate(popupPrefab, GameObject.Find("Canvas").transform);
+        UIAnimationManager.Instance.ExecuteOpenUIAnimationByRotation(instance.transform);
         popupStack.Push(instance);
         instance.GetComponent<PopupChildrenContainer>().itemImage.sprite = baseItem.Sprite;
         instance.GetComponent<PopupChildrenContainer>().itemName.text = baseItem.BaseItemModel.Name;

@@ -14,7 +14,7 @@ public class EquipmentItemFactory : ItemFactory
             item.Sprite = InsertImage(item.BaseItemModel.Id);
             
             newSlot.GetComponent<ItemContainer>().BaseItem = item;
-            newSlot.GetComponentsInChildren<Image>()[1].sprite = item.Sprite;
+            newSlot.GetComponent<ItemContainer>().itemImage.sprite = item.Sprite;
             inventoryList.Add(newSlot);
         }
     }
@@ -22,6 +22,8 @@ public class EquipmentItemFactory : ItemFactory
     public override void CreatePopup(BaseItem baseItem, Stack<GameObject> popupStack)
     {
         var instance = Instantiate(popupPrefab, GameObject.Find("Canvas").transform);
+        instance.transform.localScale *= 0.1f;
+        UIAnimationManager.Instance.ExecuteOpenUIAnimationByScale(instance.transform);
         popupStack.Push(instance);
         instance.GetComponent<PopupChildrenContainer>().itemImage.sprite = baseItem.Sprite;
         instance.GetComponent<PopupChildrenContainer>().itemName.text = baseItem.BaseItemModel.Name;
