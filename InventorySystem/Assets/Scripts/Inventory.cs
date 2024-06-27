@@ -62,4 +62,16 @@ public class Inventory : MonoBehaviour
         text.color = Color.red;
         currentSelectedButtonText = text;
     }
+
+    public void SortInventoryAscending()    
+    {
+        var list = _inventoryList.OrderBy(x => x.GetComponent<ItemContainer>().BaseItem.BaseItemModel.Name).ToList();
+
+        int index = 0;
+        foreach (var item in list)
+        {
+            item.transform.SetSiblingIndex(index);
+            index++;
+        }
+    }
 }
