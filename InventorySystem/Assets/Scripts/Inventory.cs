@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using TMPro;
 using UnityEngine;
 using File = System.IO.File;
 
@@ -11,6 +12,7 @@ public class Inventory : MonoBehaviour
     private string _inventoryJsonPath = "Assets/Json/inventory.json";
     [SerializeField] private FactoryManager factoryManager;
 
+    [SerializeField] private TMP_Text currentSelectedButtonText;
     private void Awake()
     {
         _inventoryList = new List<GameObject>();
@@ -18,6 +20,8 @@ public class Inventory : MonoBehaviour
         {
             factoryManager = FindObjectOfType<FactoryManager>();
         }
+
+        ChangeButtonTextColor(currentSelectedButtonText);
     }
 
     // Start is called before the first frame update
@@ -50,5 +54,12 @@ public class Inventory : MonoBehaviour
         {
             element.SetActive(true);    
         }
+    }
+
+    public void ChangeButtonTextColor(TMP_Text text)
+    {
+        currentSelectedButtonText.color = Color.black;
+        text.color = Color.red;
+        currentSelectedButtonText = text;
     }
 }
