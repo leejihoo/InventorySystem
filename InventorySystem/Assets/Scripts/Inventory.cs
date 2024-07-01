@@ -74,4 +74,21 @@ public class Inventory : MonoBehaviour
             index++;
         }
     }
+
+    public void UseItem(string id)
+    {
+        var target = _inventoryList.Find(x => x.GetComponent<ItemContainer>().BaseItem.BaseItemModel.Id == id);
+        var targetCount = (target.GetComponent<CountableItemContainer>().BaseItem as ConsumablesItem)?.Count;
+        if (targetCount > 0)
+        {
+            target.GetComponent<CountableItemContainer>().itemCount.text = targetCount.ToString();
+        }
+        else
+        {
+            (target.GetComponent<CountableItemContainer>().BaseItem as ConsumablesItem).Use -= UseItem;
+            PopupManager.Instance.PopupExit();
+            _inventoryList.Remove(target);
+            Destroy(target);
+        }
+    }
 }
