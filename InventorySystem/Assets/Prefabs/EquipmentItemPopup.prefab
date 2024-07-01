@@ -1178,6 +1178,7 @@ GameObject:
   - component: {fileID: 6077573264016878338}
   - component: {fileID: 6077573264016878339}
   - component: {fileID: 3884985845008640830}
+  - component: {fileID: 8164288440751452677}
   m_Layer: 5
   m_Name: EquipmentItemPopup
   m_TagString: Untagged
@@ -1231,14 +1232,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.8396226, g: 0.8396226, b: 0.8396226, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 0}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1265,6 +1266,21 @@ MonoBehaviour:
   itemType: {fileID: 6077573262470785848}
   itemDescription: {fileID: 6077573263645185716}
   itemEffect: {fileID: 6077573263187896806}
+  button: {fileID: 6077573263721226858}
+--- !u!114 &8164288440751452677
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6077573264016878337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adb30198aa32dd140b5750692dd48104, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 50
+  image: {fileID: 6077573264016878339}
 --- !u!1 &6077573264127349810
 GameObject:
   m_ObjectHideFlags: 0
@@ -1277,6 +1293,7 @@ GameObject:
   - component: {fileID: 6077573264127349814}
   - component: {fileID: 6077573264127349815}
   - component: {fileID: 6077573264127349812}
+  - component: {fileID: 2415838151342955029}
   m_Layer: 5
   m_Name: Scroll View
   m_TagString: Untagged
@@ -1302,7 +1319,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 126, y: 34}
+  m_AnchoredPosition: {x: 108, y: 34}
   m_SizeDelta: {x: 628.84, y: 283.83}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6077573264127349814
@@ -1326,14 +1343,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.392}
+  m_Color: {r: 0.4245283, g: 0.4245283, b: 0.4245283, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 0}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1373,3 +1390,17 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &2415838151342955029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6077573264127349810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adb30198aa32dd140b5750692dd48104, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 40
+  image: {fileID: 6077573264127349815}
