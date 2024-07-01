@@ -1,7 +1,10 @@
 
+using System;
+
 public class ConsumablesItem : BaseItem, ICountable, IEffectable
 {
     public int Count { get; set; }
+    public Action<string> Use;
 
     public ConsumablesItem(BaseItemModel baseItemModel) : base(baseItemModel)
     {
@@ -10,6 +13,9 @@ public class ConsumablesItem : BaseItem, ICountable, IEffectable
     
     public void ApplyEffect()
     {
-        throw new System.NotImplementedException();
+        StatController.Instance.Use((BaseItemModel as EffectableItemModel)?.Effect);
+        Count--;
+        Use?.Invoke(BaseItemModel.Id);
     }
+    
 }
