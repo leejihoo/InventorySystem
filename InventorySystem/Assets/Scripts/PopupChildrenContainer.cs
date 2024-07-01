@@ -11,4 +11,5 @@ public class PopupChildrenContainer : MonoBehaviour
     public TMP_Text itemType;
     public TMP_Text itemDescription;
     public TMP_Text itemEffect;
+    public Button button;
 }
