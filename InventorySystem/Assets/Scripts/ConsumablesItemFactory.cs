@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class ConsumablesItemFactory : ItemFactory
 {
+    [SerializeField] private Inventory inventory;
     public override void CreateItem(JArray itemList, List<GameObject> inventoryList, Transform parent)
     {
         foreach (var jToken in itemList)
@@ -18,6 +19,8 @@ public class ConsumablesItemFactory : ItemFactory
             newSlot.GetComponent<ItemContainer>().BaseItem = consumablesItem;
             newSlot.GetComponentInChildren<TMP_Text>().text = consumablesItem.Count.ToString();
             newSlot.GetComponent<ItemContainer>().itemImage.sprite = consumablesItem.Sprite;
+            (newSlot.GetComponent<ItemContainer>().BaseItem as ConsumablesItem).Use += inventory.UseItem;
+            
             inventoryList.Add(newSlot);
         }
     }
@@ -33,7 +36,8 @@ public class ConsumablesItemFactory : ItemFactory
         instance.GetComponent<PopupChildrenContainer>().itemName.text = baseItem.BaseItemModel.Name;
         instance.GetComponent<PopupChildrenContainer>().itemType.text = LocalizationManager.Instance.LocalizeTypeText(baseItem.BaseItemModel.Type);
         instance.GetComponent<PopupChildrenContainer>().itemDescription.text = baseItem.BaseItemModel.Description;
-
+        instance.GetComponent<PopupChildrenContainer>().button.onClick.AddListener((baseItem as ConsumablesItem).ApplyEffect);
+        
         instance.GetComponent<PopupChildrenContainer>().itemEffect.text = "";
         foreach (var property in typeof(Effect).GetProperties())
         {
