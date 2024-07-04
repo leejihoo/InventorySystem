@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
-using UnityEditor.Localization.Plugins.XLIFF.V12;
 
 public class UIAnimationManager : Singleton<UIAnimationManager>
 {
@@ -39,6 +36,7 @@ public class UIAnimationManager : Singleton<UIAnimationManager>
 
     public void ExecuteOpenUIAnimationByScale(Transform target)
     {
+        target.localScale *= 0.1f;
         target.DOScale(new Vector3(1, 1), animationDuration).SetEase(easeForScale);
     }
 

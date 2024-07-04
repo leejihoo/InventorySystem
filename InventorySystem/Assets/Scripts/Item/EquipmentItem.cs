@@ -1,9 +1,9 @@
 public class EquipmentItem : BaseItem,IEffectable
 {
-    public bool IsWear = false;
+    private bool _isWear = false;
     public void ApplyEffect()
     {
-        if (!IsWear)
+        if (!_isWear)
         {
             StatController.Instance.Wear((BaseItemModel as EffectableItemModel)?.Effect);    
         }
@@ -12,7 +12,7 @@ public class EquipmentItem : BaseItem,IEffectable
             StatController.Instance.UnWear((BaseItemModel as EffectableItemModel)?.Effect);
         }
 
-        Toggle(ref IsWear);
+        Toggle(ref _isWear);
     }
 
     private void Toggle(ref bool target)

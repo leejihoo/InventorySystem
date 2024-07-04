@@ -1,7 +1,4 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel.Design.Serialization;
 using DG.Tweening;
 using UnityEngine;
 
@@ -26,10 +23,10 @@ public class PopupManager : MonoBehaviour
         }
     }
 
-    public void CreateItemPopup(BaseItem baseItem, ItemType itemtype)
+    public void CreateItemPopup(BaseItem baseItem, ItemType itemType)
     {
         CreateBlur();
-        factoryManager.CreatePopup(baseItem, _popupStack, itemtype);
+        factoryManager.CreatePopup(baseItem, _popupStack, itemType);
     }
 
     public void PopupExit()
@@ -43,7 +40,7 @@ public class PopupManager : MonoBehaviour
         }
     }
 
-    public void CreateBlur()
+    private void CreateBlur()
     {
         var instance =Instantiate(blur, GameObject.Find("Canvas").transform);
         _popupStack.Push(instance);

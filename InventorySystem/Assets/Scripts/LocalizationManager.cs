@@ -1,10 +1,5 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
-using UnityEngine;
 using UnityEngine.Localization.Settings;
-using UnityEngine.UI;
 
 public class LocalizationManager : Singleton<LocalizationManager>
 {
@@ -19,6 +14,7 @@ public class LocalizationManager : Singleton<LocalizationManager>
 
     public void ChangeNation(TMP_Dropdown dropdown)
     {
+        // dropdown 순서와 localize setting의 available Local의 순서가 일치하도록 해놓음. 
         localSetting.SetSelectedLocale(localSetting.GetAvailableLocales().Locales[dropdown.value]);
     }
 

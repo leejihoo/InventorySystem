@@ -6,16 +6,16 @@ using Newtonsoft.Json;
 public class ItemDatabase : MonoBehaviour
 {
     public static Dictionary<string, BaseItem> ItemDictionary;
-    private string _equipmentItemJsonPath = "Assets/Json/EquipmentItem.json";
-    private string _consumablesItemJsonPath = "Assets/Json/ConsumablesItem.json";
-    private string _miscItemJsonPath = "Assets/Json/MiscItem.json";
+    private const string EquipmentItemJsonPath = "Assets/Json/EquipmentItem.json";
+    private const string ConsumablesItemJsonPath = "Assets/Json/ConsumablesItem.json";
+    private const string MiscItemJsonPath = "Assets/Json/MiscItem.json";
     
     private void Awake()
     {
         ItemDictionary = new Dictionary<string, BaseItem>();
-        ConvertEffectableItemJsonToList(_equipmentItemJsonPath,ItemType.Equipment);
-        ConvertEffectableItemJsonToList(_consumablesItemJsonPath, ItemType.Consumables);
-        ConvertBaseItemJsonToList(_miscItemJsonPath, ItemType.Misc);
+        ConvertEffectableItemJsonToList(EquipmentItemJsonPath,ItemType.Equipment);
+        ConvertEffectableItemJsonToList(ConsumablesItemJsonPath, ItemType.Consumables);
+        ConvertBaseItemJsonToList(MiscItemJsonPath, ItemType.Misc);
     }
 
     private void ConvertEffectableItemJsonToList(string filePath, ItemType itemType)
@@ -26,7 +26,6 @@ public class ItemDatabase : MonoBehaviour
 
         foreach (var value in result)
         {
-            //Debug.Log(JsonConvert.SerializeObject(value));
             if (itemType == ItemType.Equipment)
             {
                 ItemDictionary.Add(value.Id,new EquipmentItem(value));
@@ -47,7 +46,6 @@ public class ItemDatabase : MonoBehaviour
 
         foreach (var value in result)
         {
-            //Debug.Log(JsonConvert.SerializeObject(value));
             if (itemType == ItemType.Misc)
             {
                 ItemDictionary.Add(value.Id,new MiscItem(value));

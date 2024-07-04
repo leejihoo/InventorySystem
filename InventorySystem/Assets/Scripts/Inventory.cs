@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
@@ -9,10 +10,10 @@ using File = System.IO.File;
 public class Inventory : MonoBehaviour
 {
     private List<GameObject> _inventoryList;
-    private string _inventoryJsonPath = "Assets/Json/inventory.json";
+    private const string InventoryJsonPath = "Assets/Json/inventory.json";
     [SerializeField] private FactoryManager factoryManager;
-
     [SerializeField] private TMP_Text currentSelectedButtonText;
+    
     private void Awake()
     {
         _inventoryList = new List<GameObject>();
@@ -27,12 +28,26 @@ public class Inventory : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        string json = File.ReadAllText(_inventoryJsonPath);
+        string json = File.ReadAllText(InventoryJsonPath);
         var inventoryInfo = JsonConvert.DeserializeObject<JObject>(json);
-        // 이것도 줄이고 싶다.
-        factoryManager.CreateItem(inventoryInfo["miscList"] as JArray, _inventoryList, transform,ItemType.Misc);
-        factoryManager.CreateItem(inventoryInfo["consumablesList"] as JArray, _inventoryList, transform,ItemType.Consumables);
-        factoryManager.CreateItem(inventoryInfo["equipmentList"] as JArray, _inventoryList, transform,ItemType.Equipment);
+#if UNITY_EDITOR
+        if (inventoryInfo == null)
+        {
+            throw new NullReferenceException("inventoryInfo가 null입니다.");
+        }
+#endif
+        
+        foreach (ItemType itemType in Enum.GetValues(typeof(ItemType)))
+        {
+            var itemTypeName = Enum.GetName(typeof(ItemType), itemType)?.ToLower();
+#if UNITY_EDITOR
+            if (itemTypeName == null)
+            {
+                throw new NullReferenceException("ItemType enum 내에 itemType이 존재하지 않아 이름을 찾을 수 없습니다.");
+            }
+#endif
+            factoryManager.CreateItem(inventoryInfo[itemTypeName + "List"] as JArray, _inventoryList, transform, itemType);
+        }
     }
 
     public void ShowClassifiedItem(int itemType) 
@@ -78,14 +93,23 @@ public class Inventory : MonoBehaviour
     public void UseItem(string id)
     {
         var target = _inventoryList.Find(x => x.GetComponent<ItemContainer>().BaseItem.BaseItemModel.Id == id);
-        var targetCount = (target.GetComponent<CountableItemContainer>().BaseItem as ConsumablesItem)?.Count;
+        var countableItemContainer = target.GetComponent<CountableItemContainer>();
+        var castingItem = countableItemContainer.BaseItem as ConsumablesItem;
+#if UNITY_EDITOR
+        if (castingItem == null)
+        {
+            throw new NullReferenceException("BaseItem을 ConsumablesItem로 형변환 할 수 없습니다.");
+        }
+#endif
+        var targetCount = castingItem.Count;
+        
         if (targetCount > 0)
         {
-            target.GetComponent<CountableItemContainer>().itemCount.text = targetCount.ToString();
+            countableItemContainer.itemCount.text = targetCount.ToString();
         }
         else
         {
-            (target.GetComponent<CountableItemContainer>().BaseItem as ConsumablesItem).Use -= UseItem;
+            castingItem.Use -= UseItem;
             PopupManager.Instance.PopupExit();
             _inventoryList.Remove(target);
             Destroy(target);

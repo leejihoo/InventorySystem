@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Newtonsoft.Json.Linq;
@@ -11,13 +12,36 @@ public class MiscItemFactory : ItemFactory
         foreach (var jToken in itemList)
         {
             var newSlot = Instantiate(slotPrefab, parent);
+#if UNITY_EDITOR
+            if (jToken["id"] == null || jToken["count"] == null)
+            {
+                throw new NullReferenceException("인벤토리 기타아이템 json에 id 또는 count가 null인 jToken이 존재합니다.");
+            }
+            
+            if (!ItemDatabase.ItemDictionary.ContainsKey(jToken["id"].ToString()))
+            {
+                throw new NullReferenceException("데이터베이스에 존재하지 않는 id 입니다.");
+            }
+            
+#endif
             MiscItem miscItem = ItemDatabase.ItemDictionary[jToken["id"].ToString()] as MiscItem;
+            
+#if UNITY_EDITOR
+            if (miscItem == null)
+            {
+                throw new NullReferenceException("id: " + jToken["id"] + "인 아이템이 데이터베이스에 value가 존재하지 않습니다.");
+            }
+            
+#endif
             miscItem.Count = int.Parse(jToken["count"].ToString());
             miscItem.Sprite = InsertImage(miscItem.BaseItemModel.Id);
             
-            newSlot.GetComponent<ItemContainer>().BaseItem = miscItem;
-            newSlot.GetComponentInChildren<TMP_Text>().text = miscItem.Count.ToString();
-            newSlot.GetComponent<ItemContainer>().itemImage.sprite = miscItem.Sprite;
+            var itemContainer = newSlot.GetComponent<CountableItemContainer>();
+            
+            itemContainer.BaseItem = miscItem;
+            itemContainer.itemCount.text = miscItem.Count.ToString();
+            itemContainer.itemImage.sprite = miscItem.Sprite;
+            itemContainer.OnClicked += popupManager.CreateItemPopup;
             inventoryList.Add(newSlot);
         }
     }

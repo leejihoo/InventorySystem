@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -52,7 +50,7 @@ public class StatController : Singleton<StatController>
         UpdateText();
     }
 
-    public void UpdateText()
+    private void UpdateText()
     {
         strengthText.text = charaterStat.Strength.ToString();
         luckText.text = charaterStat.Luck.ToString();
