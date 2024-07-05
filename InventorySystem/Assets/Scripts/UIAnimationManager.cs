@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
@@ -9,10 +11,18 @@ public class UIAnimationManager : Singleton<UIAnimationManager>
     [SerializeField] private Ease easeForScale;
     [SerializeField] private Ease easeForAlpha;
     [SerializeField] private Ease easeForRotation;
+    private Dictionary<AnimaitonType, UIAnimation> dictionary;
 
     public override void Awake()
     {
         base.Awake();
+        dictionary = new Dictionary<AnimaitonType, UIAnimation>();
+        foreach (var value in Enum.GetValues(typeof(AnimaitonType)))
+        {
+            var animationType = (AnimaitonType)value;
+            dictionary.Add(animationType, UIAnimation.GetUIAnimation(animationType));
+        }
+        
         if (animationDuration == 0)
         {
             animationDuration = 0.3f;
@@ -34,19 +44,49 @@ public class UIAnimationManager : Singleton<UIAnimationManager>
         }
     }
 
-    public void ExecuteOpenUIAnimationByScale(Transform target)
+    public void ExecuteAnimation(Transform target, float duration, Ease ease, AnimaitonType animaitonType)
     {
-        target.localScale *= 0.1f;
-        target.DOScale(new Vector3(1, 1), animationDuration).SetEase(easeForScale);
+        var targetAnimation = dictionary[animaitonType];
+        targetAnimation.ExecuteAnimation(target,duration,ease);
     }
 
-    public void ExecuteOpenUIAnimationByAlpha(Transform target)
+    public void ExecuteAnimation(Transform target, AnimaitonType animaitonType)
     {
-        target.GetComponent<CanvasGroup>().DOFade(1f, animationDuration).SetEase(easeForAlpha);
+        var targetAnimation = dictionary[animaitonType];
+        targetAnimation.ExecuteAnimation(target,animationDuration,GetEase(animaitonType));
     }
 
-    public void ExecuteOpenUIAnimationByRotation(Transform target)
+    private Ease GetEase(AnimaitonType animaitonType)
     {
-        target.DORotate(new Vector3(0, 360f), animationDuration, RotateMode.FastBeyond360).SetEase(easeForRotation);
+        if (animaitonType == AnimaitonType.Scale)
+        {
+            return easeForScale;
+        }
+        else if (animaitonType == AnimaitonType.Alpha)
+        {
+            return easeForAlpha;
+        }
+        else if (animaitonType == AnimaitonType.Rotation)
+        {
+            return easeForRotation;
+        }
+
+        return Ease.Unset;
     }
+
+    // public void ExecuteOpenUIAnimationByScale(Transform target)
+    // {
+    //     target.localScale *= 0.1f;
+    //     target.DOScale(new Vector3(1, 1), animationDuration).SetEase(easeForScale);
+    // }
+    //
+    // public void ExecuteOpenUIAnimationByAlpha(Transform target)
+    // {
+    //     target.GetComponent<CanvasGroup>().DOFade(1f, animationDuration).SetEase(easeForAlpha);
+    // }
+    //
+    // public void ExecuteOpenUIAnimationByRotation(Transform target)
+    // {
+    //     target.DORotate(new Vector3(0, 360f), animationDuration, RotateMode.FastBeyond360).SetEase(easeForRotation);
+    // }
 }
