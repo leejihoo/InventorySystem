@@ -24,4 +24,29 @@ public abstract class ItemFactory: MonoBehaviour
         var op = Addressables.LoadAssetAsync<Sprite>(id);
         return op.WaitForCompletion();
     }
+
+    public virtual void ExecuteAnimation(Transform target,AnimaitonType animaitonType)
+    {
+        UIAnimationManager.Instance.ExecuteAnimation(target, animaitonType);
+    }
+
+    public virtual string LocalizeTypeText(ItemType itemType)
+    {
+        return LocalizationManager.Instance.LocalizeTypeText(itemType);
+    }
+
+    public virtual string LocalizeEffectText(string targetName)
+    {
+        return LocalizationManager.Instance.LocalizeEffectText(targetName);
+    }
+
+    public virtual BaseItem GetItemFrame(string id)
+    {
+        return ItemDatabase.ItemDictionary[id];
+    }
+
+    public virtual bool ContainsId(string id)
+    {
+        return ItemDatabase.ItemDictionary.ContainsKey(id);
+    }
 }

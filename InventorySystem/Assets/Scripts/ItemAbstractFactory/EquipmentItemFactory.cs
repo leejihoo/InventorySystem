@@ -10,7 +10,7 @@ public class EquipmentItemFactory : ItemFactory
         foreach (var jToken in itemList)
         {
             var newSlot = Instantiate(slotPrefab, parent);
-            var item = ItemDatabase.ItemDictionary[jToken.ToString()];
+            var item = GetItemFrame(jToken.ToString());
             item.Sprite = InsertImage(item.BaseItemModel.Id); 
             
             var itemContainer = newSlot.GetComponent<ItemContainer>();
@@ -25,13 +25,13 @@ public class EquipmentItemFactory : ItemFactory
     public override void CreatePopup(BaseItem baseItem, Stack<GameObject> popupStack)
     {
         var instance = Instantiate(popupPrefab, GameObject.Find("Canvas").transform);
-        UIAnimationManager.Instance.ExecuteOpenUIAnimationByScale(instance.transform);
+        ExecuteAnimation(instance.transform,AnimaitonType.Scale);
         popupStack.Push(instance);
 
         var popupChildrenContainer = instance.GetComponent<PopupChildrenContainer>();
         popupChildrenContainer.itemImage.sprite = baseItem.Sprite;
         popupChildrenContainer.itemName.text = baseItem.BaseItemModel.Name;
-        popupChildrenContainer.itemType.text = LocalizationManager.Instance.LocalizeTypeText(baseItem.BaseItemModel.Type);
+        popupChildrenContainer.itemType.text = LocalizeTypeText(baseItem.BaseItemModel.Type);
         popupChildrenContainer.itemDescription.text = baseItem.BaseItemModel.Description;
         var castingItem = baseItem as EquipmentItem;
         #if UNITY_EDITOR
@@ -58,7 +58,7 @@ public class EquipmentItemFactory : ItemFactory
                 continue;
             }
 
-            instance.GetComponent<PopupChildrenContainer>().itemEffect.text += LocalizationManager.Instance.LocalizeEffectText(property.Name) + " +" + value + "\n";
+            instance.GetComponent<PopupChildrenContainer>().itemEffect.text += LocalizeEffectText(property.Name) + " +" + value + "\n";
         }
     }
 }

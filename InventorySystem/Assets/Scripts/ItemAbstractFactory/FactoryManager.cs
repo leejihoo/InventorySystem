@@ -9,7 +9,7 @@ using UnityEngine;
 public class FactoryManager : MonoBehaviour
 {
     private Dictionary<ItemType, ItemFactory> _itemFactoryDictionary;
-
+    
     public void Awake()
     {
         _itemFactoryDictionary = new Dictionary<ItemType, ItemFactory>();

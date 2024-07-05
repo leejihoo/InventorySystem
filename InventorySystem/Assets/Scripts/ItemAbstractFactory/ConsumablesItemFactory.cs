@@ -19,14 +19,14 @@ public class ConsumablesItemFactory : ItemFactory
                 throw new NullReferenceException("인벤토리 소비아이템 json에 id 또는 count가 null인 jToken이 존재합니다.");
             }
             
-            if (!ItemDatabase.ItemDictionary.ContainsKey(jToken["id"].ToString()))
+            if (!ContainsId(jToken["id"].ToString()))
             {
                 throw new NullReferenceException("데이터베이스에 존재하지 않는 id 입니다.");
             }
             
             #endif
             
-            ConsumablesItem consumablesItem = ItemDatabase.ItemDictionary[jToken["id"].ToString()] as ConsumablesItem;
+            ConsumablesItem consumablesItem = GetItemFrame(jToken["id"].ToString()) as ConsumablesItem;
             
             #if UNITY_EDITOR
             if (consumablesItem == null)
@@ -64,13 +64,13 @@ public class ConsumablesItemFactory : ItemFactory
     {
         var instance = Instantiate(popupPrefab, GameObject.Find("Canvas").transform);
         instance.GetComponent<CanvasGroup>().alpha = 0f;
-        UIAnimationManager.Instance.ExecuteOpenUIAnimationByAlpha(instance.transform);
+        ExecuteAnimation(instance.transform,AnimaitonType.Alpha);
         popupStack.Push(instance);
         
         var popupChildrenContainer = instance.GetComponent<PopupChildrenContainer>();
         popupChildrenContainer.itemImage.sprite = baseItem.Sprite;
         popupChildrenContainer.itemName.text = baseItem.BaseItemModel.Name;
-        popupChildrenContainer.itemType.text = LocalizationManager.Instance.LocalizeTypeText(baseItem.BaseItemModel.Type);
+        popupChildrenContainer.itemType.text = LocalizeTypeText(baseItem.BaseItemModel.Type);
         popupChildrenContainer.itemDescription.text = baseItem.BaseItemModel.Description;
         
         var castingItem = baseItem as ConsumablesItem;
@@ -99,7 +99,7 @@ public class ConsumablesItemFactory : ItemFactory
             //     continue;
             // }
 
-            instance.GetComponent<PopupChildrenContainer>().itemEffect.text += LocalizationManager.Instance.LocalizeEffectText(property.Name) + " +" + value + "\n";
+            instance.GetComponent<PopupChildrenContainer>().itemEffect.text += LocalizeEffectText(property.Name) + " +" + value + "\n";
         }
     }
 }
